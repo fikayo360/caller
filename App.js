@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Allcontacts from './allcontacts';
+import Dialer from './dialer';
+import Recents from './recents';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function App() {
+  const Tab = createBottomTabNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+        <Tab.Navigator 
+         initialRouteName="Dialer"
+        screenOptions={({route}) => ({
+          tabBarIcon : ({focused,size,color}) => {}
+          
+        })}>
+        <Tab.Screen name="Dialer" component={Dialer} />
+        <Tab.Screen name="Recents" component={Recents} />
+        <Tab.Screen name="Allcontacts" component={Allcontacts} />
+      </Tab.Navigator>
+    </NavigationContainer>
+    
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
